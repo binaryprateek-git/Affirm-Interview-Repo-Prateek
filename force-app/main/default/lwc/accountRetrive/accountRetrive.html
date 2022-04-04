@@ -1,0 +1,54 @@
+<template>
+    <lightning-card title="All Accounts">
+        <!--div style="margin-left:3%;">
+            <lightning-radio-group label="Account Type" 
+                                    name="radioButtonGroup" 
+                                    onchange={handleChange} 
+                                    options={options}
+                                    value={selectedValue}
+                                    type="radio">
+            </lightning-radio-group>
+        
+            <br/>
+            <div if:true={selectedValue}>
+                Selected Vlaue: <b>{selectedValue}</b>
+            </div>
+        </div>-->
+        <ul>
+            <template if:true={responseReceived}>
+                <template for:each={accountObj.data} for:item="account">
+                    <li key={account.Id}>
+                        <div class="slds-p-around_medium lgc-bg">
+                            <lightning-tile type="media" href="" onselect={selectedAccountHandler}>{account.Name}
+                                <lightning-icon slot="media" icon-name="standard:account" ></lightning-icon>
+                            </lightning-tile>
+                        </div>
+                    </li>
+                </template>
+            </template>
+        </ul>
+        <lightning-button label="Next" onclick={onClickHandler}></lightning-button>
+        <ul>
+            <template if:true={responseReceived}>
+                <template for:each={accountdetailObj} for:item="acc">
+                    <li key={acc.Id}>
+                        <div class="slds-p-around_medium lgc-bg">
+                            <lightning-tile label={acc.Name} type="media" >
+                                <lightning-icon slot="media" icon-name="standard:account"></lightning-icon>
+                                <p class="slds-truncate" title={acc.Name}>{acc.Name}</p>
+                            </lightning-tile>
+                            <lightning-tile label={acc.Industry} type="media" >
+                                <lightning-icon slot="media" icon-name="standard:account"></lightning-icon>
+                                <p class="slds-truncate" title={acc.Industry}>{acc.Industry}</p>
+                            </lightning-tile>
+                            <lightning-tile label={acc.Name} type="media" >
+                                <lightning-icon slot="media" icon-name="standard:account"></lightning-icon>
+                                <p class="slds-truncate" title={acc.Type}>{acc.Type}</p>
+                            </lightning-tile>
+                        </div>
+                    </li>
+                </template>
+            </template>
+        </ul>
+    </lightning-card>
+</template>
